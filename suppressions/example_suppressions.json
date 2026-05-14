@@ -1,0 +1,24 @@
+{
+  "suppressions": [
+    {
+      "id": "SUP-001",
+      "rule_id": "AUTH-001",
+      "source_path_contains": "false_positive",
+      "reason": "Expected synthetic training-lab failed-login false positive"
+    },
+    {
+      "id": "SUP-002",
+      "rule_id": "CMD-001",
+      "source_path_contains": "false_positive",
+      "matched_value_contains": "SYNTHETIC_SUSPICIOUS_COMMAND_MARKER",
+      "reason": "Expected synthetic command marker shown in training material"
+    },
+    {
+      "id": "SUP-003",
+      "rule_id": "FILE-001",
+      "source_path_contains": "false_positive",
+      "matched_value_contains": "SYNTHETIC_SUSPICIOUS_FILE_MARKER",
+      "reason": "Expected synthetic file marker shown in training notes"
+    }
+  ]
+}

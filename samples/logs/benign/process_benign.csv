@@ -1,0 +1,3 @@
+timestamp,host,user,process_name,command_line,parent_process,synthetic,note
+2026-01-10T09:15:00Z,workstation-01,analyst01,text-editor.exe,"open notes file",desktop-shell.exe,true,Synthetic benign editor activity
+2026-01-10T09:20:00Z,workstation-02,analyst02,backup-check.exe,"read backup status",scheduler.exe,true,Synthetic benign maintenance activity

@@ -1,0 +1,3 @@
+timestamp,host,user,process_name,command_line,parent_process,synthetic,note
+2026-01-10T10:15:00Z,workstation-03,synthetic-user-a,lab-simulated-runner.exe,"SYNTHETIC_SUSPICIOUS_COMMAND_MARKER only",desktop-shell.exe,true,Synthetic inert suspicious command marker
+2026-01-10T10:18:00Z,workstation-03,synthetic-user-a,fake-indicator-check.exe,"connect to fake-control.test for lab validation",desktop-shell.exe,true,Synthetic inert fake indicator reference

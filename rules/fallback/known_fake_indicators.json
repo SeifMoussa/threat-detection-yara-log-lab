@@ -1,0 +1,22 @@
+{
+  "rules": [
+    {
+      "id": "IND-001",
+      "name": "Known Fake Lab Domain",
+      "description": "Flags a reserved .test domain used as a fake indicator in synthetic samples.",
+      "severity": "medium",
+      "tags": ["indicator", "domain", "synthetic"],
+      "rule_type": "regex",
+      "target": "log_field",
+      "field": "command_line",
+      "pattern": "\\bfake-control\\.test\\b",
+      "false_positive_notes": "Documentation, presentations, or training samples may include this fake domain.",
+      "sample_references": [
+        "samples/logs/suspicious/process_suspicious.csv",
+        "samples/logs/false_positive/process_false_positive.csv",
+        "samples/files/suspicious/fake_indicator_note.txt"
+      ],
+      "enabled": true
+    }
+  ]
+}

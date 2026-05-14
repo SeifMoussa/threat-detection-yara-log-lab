@@ -1,0 +1,20 @@
+{
+  "rules": [
+    {
+      "id": "FILE-001",
+      "name": "Synthetic Suspicious File Marker",
+      "description": "Flags a harmless file-content marker used to test local file scanning logic.",
+      "severity": "low",
+      "tags": ["file", "content", "synthetic"],
+      "rule_type": "contains",
+      "target": "file_content",
+      "pattern": "SYNTHETIC_SUSPICIOUS_FILE_MARKER",
+      "false_positive_notes": "May appear in training notes, rule-writing docs, or expected false-positive fixtures.",
+      "sample_references": [
+        "samples/files/suspicious/fake_indicator_note.txt",
+        "samples/files/false_positive/training_note.txt"
+      ],
+      "enabled": true
+    }
+  ]
+}

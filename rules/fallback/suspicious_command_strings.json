@@ -1,0 +1,21 @@
+{
+  "rules": [
+    {
+      "id": "CMD-001",
+      "name": "Synthetic Suspicious Command Marker",
+      "description": "Flags an inert command-line marker used only in synthetic lab samples.",
+      "severity": "medium",
+      "tags": ["process", "command-line", "synthetic"],
+      "rule_type": "contains",
+      "target": "log_field",
+      "field": "command_line",
+      "pattern": "SYNTHETIC_SUSPICIOUS_COMMAND_MARKER",
+      "false_positive_notes": "May appear in training material or documentation examples.",
+      "sample_references": [
+        "samples/logs/suspicious/process_suspicious.csv",
+        "samples/logs/false_positive/process_false_positive.csv"
+      ],
+      "enabled": true
+    }
+  ]
+}

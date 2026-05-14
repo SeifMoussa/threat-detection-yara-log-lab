@@ -1,0 +1,5 @@
+{"timestamp":"2026-01-10T10:00:00Z","event_type":"failed_login","user":"synthetic-user-a","source_ip":"198.51.100.23","host":"lab-auth-01","message":"SYNTHETIC suspicious failed login burst marker","synthetic":true}
+{"timestamp":"2026-01-10T10:01:00Z","event_type":"failed_login","user":"synthetic-user-a","source_ip":"198.51.100.23","host":"lab-auth-01","message":"SYNTHETIC suspicious failed login burst marker","synthetic":true}
+{"timestamp":"2026-01-10T10:02:00Z","event_type":"failed_login","user":"synthetic-user-a","source_ip":"198.51.100.23","host":"lab-auth-01","message":"SYNTHETIC suspicious failed login burst marker","synthetic":true}
+{"timestamp":"2026-01-10T10:03:00Z","event_type":"failed_login","user":"synthetic-user-a","source_ip":"198.51.100.23","host":"lab-auth-01","message":"SYNTHETIC suspicious failed login burst marker","synthetic":true}
+{"timestamp":"2026-01-10T10:04:00Z","event_type":"failed_login","user":"synthetic-user-a","source_ip":"198.51.100.23","host":"lab-auth-01","message":"SYNTHETIC suspicious failed login burst marker","synthetic":true}

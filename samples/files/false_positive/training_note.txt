@@ -1,0 +1,4 @@
+SYNTHETIC-SAMPLE: false_positive
+
+A training slide might mention SYNTHETIC_SUSPICIOUS_FILE_MARKER as an example.
+This file is intended to validate false-positive handling in later phases.

@@ -1,0 +1,7 @@
+SYNTHETIC-SAMPLE: suspicious
+
+This harmless text file contains inert detection markers:
+SYNTHETIC_SUSPICIOUS_FILE_MARKER
+fake-control.test
+
+These strings are fake and exist only for local rule-validation exercises.

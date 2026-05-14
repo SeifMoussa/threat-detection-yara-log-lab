@@ -1,0 +1,27 @@
+{
+  "rules": [
+    {
+      "id": "AUTH-001",
+      "name": "Synthetic Failed Login Burst",
+      "description": "Identifies repeated synthetic failed-login events for one lab user.",
+      "severity": "high",
+      "tags": ["auth", "threshold", "synthetic"],
+      "rule_type": "threshold",
+      "target": "log_field",
+      "field": "event_type",
+      "condition": {
+        "field": "event_type",
+        "equals": "failed_login",
+        "group_by": ["user", "source_ip"],
+        "count_gte": 5,
+        "window_minutes": 10
+      },
+      "false_positive_notes": "Training exercises and password reset drills may produce benign failed-login bursts.",
+      "sample_references": [
+        "samples/logs/suspicious/auth_suspicious.jsonl",
+        "samples/logs/false_positive/auth_false_positive.jsonl"
+      ],
+      "enabled": true
+    }
+  ]
+}

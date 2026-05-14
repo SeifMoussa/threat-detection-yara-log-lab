@@ -1,0 +1,10 @@
+{
+  "suppressions": [
+    {
+      "id": "SUP-BAD-OPTIONAL",
+      "rule_id": "CMD-001",
+      "source_path_contains": "",
+      "reason": "Synthetic invalid optional field fixture"
+    }
+  ]
+}

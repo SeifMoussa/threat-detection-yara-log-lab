@@ -1,0 +1,100 @@
+{
+  "alerts": [
+    {
+      "matched_field": "event_type",
+      "matched_value": "failed_login",
+      "message": "Rule AUTH-001 matched threshold count 5",
+      "metadata": {
+        "_source_line": 1,
+        "_source_path": "samples\\logs\\suspicious\\auth_suspicious.jsonl",
+        "count": 5,
+        "host": "lab-auth-01",
+        "source_ip": "198.51.100.23",
+        "timestamp": "2026-01-10T10:00:00Z",
+        "user": "synthetic-user-a",
+        "window_minutes": 10
+      },
+      "rule_id": "AUTH-001",
+      "rule_name": "Synthetic Failed Login Burst",
+      "severity": "high",
+      "source_path": "samples\\logs\\suspicious\\auth_suspicious.jsonl",
+      "source_type": "log",
+      "suppressed": false,
+      "tags": [
+        "auth",
+        "threshold",
+        "synthetic"
+      ]
+    }
+  ],
+  "generated_at": "2026-05-14T17:55:04+00:00",
+  "input_paths": [
+    "samples/logs/suspicious/auth_suspicious.jsonl"
+  ],
+  "rules_used": [
+    {
+      "enabled": true,
+      "id": "AUTH-001",
+      "name": "Synthetic Failed Login Burst",
+      "rule_type": "threshold",
+      "severity": "high",
+      "tags": [
+        "auth",
+        "threshold",
+        "synthetic"
+      ],
+      "target": "log_field"
+    },
+    {
+      "enabled": true,
+      "id": "IND-001",
+      "name": "Known Fake Lab Domain",
+      "rule_type": "regex",
+      "severity": "medium",
+      "tags": [
+        "indicator",
+        "domain",
+        "synthetic"
+      ],
+      "target": "log_field"
+    },
+    {
+      "enabled": true,
+      "id": "CMD-001",
+      "name": "Synthetic Suspicious Command Marker",
+      "rule_type": "contains",
+      "severity": "medium",
+      "tags": [
+        "process",
+        "command-line",
+        "synthetic"
+      ],
+      "target": "log_field"
+    },
+    {
+      "enabled": true,
+      "id": "FILE-001",
+      "name": "Synthetic Suspicious File Marker",
+      "rule_type": "contains",
+      "severity": "low",
+      "tags": [
+        "file",
+        "content",
+        "synthetic"
+      ],
+      "target": "file_content"
+    }
+  ],
+  "safety_disclaimer": "Safety disclaimer: this report was generated from local synthetic lab data only. It does not contain malware samples, real credentials, real stolen data, attack guidance, or third-party scanning results. This educational lab does not claim production SOC, EDR, or SIEM capability.",
+  "severity_counts": {
+    "high": 1,
+    "low": 0,
+    "medium": 0
+  },
+  "summary": {
+    "suppressed_count": 0,
+    "total_alerts": 1,
+    "unsuppressed_count": 1
+  },
+  "title": "YARA-Style Log Lab Detection Report"
+}

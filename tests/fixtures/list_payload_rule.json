@@ -1,0 +1,16 @@
+[
+  {
+    "id": "TEST-002",
+    "name": "List Payload Test Rule",
+    "description": "Synthetic test rule loaded from a top-level list.",
+    "severity": "low",
+    "tags": ["synthetic"],
+    "rule_type": "contains",
+    "target": "log_field",
+    "field": "message",
+    "pattern": "SYNTHETIC_TEST_MARKER",
+    "false_positive_notes": "Synthetic test false-positive note.",
+    "sample_references": ["samples/logs/suspicious/auth_suspicious.jsonl"],
+    "enabled": true
+  }
+]
