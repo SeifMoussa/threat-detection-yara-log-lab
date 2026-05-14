@@ -177,8 +177,8 @@ def render_markdown_report(report: Report) -> str:
             "## False-Positive Review Notes",
             "",
             "False-positive handling is rule-driven and explicit. Suppressed alerts remain "
-            "counted in the summary, and suppression reasons are shown when suppressed "
-            "details are included.",
+            + "counted in the summary, and suppression reasons are shown when suppressed "
+            + "details are included.",
             "",
         ]
     )
