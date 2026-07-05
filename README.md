@@ -156,7 +156,7 @@ python scripts/check-docs.py
 
 ## Current Verification Status
 
-Latest local Phase 9 release-prep status:
+Current local release-readiness status:
 
 - `pytest`: 88 passed
 - coverage: 96.07%, above the configured 90% threshold
