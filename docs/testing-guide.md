@@ -64,7 +64,7 @@ python -m yara_log_lab report --rules rules/fallback --input samples/logs/suspic
 
 ## Current Test Coverage
 
-At the end of Phase 5, the suite had 53 tests. Phase 6 adds documentation consistency tests.
+At an earlier test milestone, the suite had 53 tests. Documentation consistency tests were added afterward.
 
 Coverage areas:
 
@@ -89,7 +89,7 @@ Coverage areas:
 
 ## CI Workflows
 
-Phase 7 adds local workflow files for:
+Local workflow files provide:
 
 - `tests`: ruff, format check, pytest with coverage
 - `docs`: `python scripts/check-docs.py`

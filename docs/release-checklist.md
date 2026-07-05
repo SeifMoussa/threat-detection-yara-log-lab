@@ -4,14 +4,14 @@ This checklist tracks local release preparation. Do not create a tag or release 
 
 ## Current State
 
-- [x] Code complete through Phase 8.
-- [x] Documentation updated in Phase 6.
+- [x] Core implementation complete.
+- [x] Documentation reflects the current implementation.
 - [x] CI configured.
 - [x] CodeQL configured.
 - [ ] CI not yet verified on GitHub.
 - [ ] CodeQL not yet verified on GitHub.
-- [x] Final QA completed locally in Phase 8.
-- [x] Release preparation materials completed locally in Phase 9.
+- [x] Final QA completed locally.
+- [x] Release preparation materials completed locally.
 - [ ] Tag/release creation pending.
 
 ## Local Verification
