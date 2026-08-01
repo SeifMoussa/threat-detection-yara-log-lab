@@ -1,4 +1,4 @@
-"""Tests for Phase 3 CLI commands."""
+"""Tests for CLI commands."""
 
 from __future__ import annotations
 
@@ -63,6 +63,46 @@ def test_cli_scan_text_output_is_readable(capsys) -> None:
     assert exit_code == 0
     assert "MEDIUM CMD-001" in output
     assert "source=" in output
+
+
+def test_cli_scan_combines_fallback_and_yara_alerts_by_default(capsys) -> None:
+    exit_code = main(
+        [
+            "scan",
+            "--rules",
+            str(ROOT / "rules/fallback"),
+            "--yara-rules",
+            str(ROOT / "rules/yara"),
+            "--input",
+            str(ROOT / "samples/files/suspicious/fake_indicator_note.txt"),
+            "--format",
+            "json",
+        ]
+    )
+
+    payload = json.loads(capsys.readouterr().out)
+    assert exit_code == 0
+    assert {alert["rule_id"] for alert in payload} == {"FILE-001", "YARA-001", "YARA-002"}
+
+
+def test_cli_scan_reports_missing_yara_rules_directory_clearly(capsys) -> None:
+    exit_code = main(
+        [
+            "scan",
+            "--rules",
+            str(ROOT / "rules/fallback"),
+            "--yara-rules",
+            str(ROOT / "rules/does-not-exist"),
+            "--input",
+            str(ROOT / "samples/files/benign/readme_note.txt"),
+            "--format",
+            "json",
+        ]
+    )
+
+    captured = capsys.readouterr()
+    assert exit_code == 2
+    assert "YARA rule directory does not exist" in captured.err
 
 
 def test_cli_scan_invalid_input_exits_nonzero(capsys) -> None:

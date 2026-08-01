@@ -1,4 +1,4 @@
-"""Basic workflow configuration checks for Phase 7."""
+"""Basic workflow configuration checks."""
 
 from pathlib import Path
 
@@ -17,10 +17,10 @@ def test_ci_workflow_has_required_jobs_and_commands() -> None:
         "python scripts/check-docs.py",
         "python -m yara_log_lab validate-rules --rules rules/fallback",
         "python -m yara_log_lab report --rules rules/fallback",
+        "python -m yara_log_lab scan --rules rules/fallback --yara-rules rules/yara",
     ):
         assert command in ci_text
     assert 'python-version: "3.12"' in ci_text
-    assert "yara" not in ci_text.lower().replace("yara_log_lab", "")
 
 
 def test_codeql_workflow_analyzes_python() -> None:

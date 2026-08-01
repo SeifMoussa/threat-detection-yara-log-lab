@@ -1,4 +1,4 @@
-"""Tests for Phase 5 report generation."""
+"""Tests for report generation."""
 
 from __future__ import annotations
 

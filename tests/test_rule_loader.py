@@ -1,4 +1,4 @@
-"""Tests for Phase 2 fallback rule schema validation."""
+"""Tests for fallback rule schema validation."""
 
 from pathlib import Path
 

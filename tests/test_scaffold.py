@@ -1,4 +1,4 @@
-"""Phase 1 scaffold tests."""
+"""Package scaffold tests."""
 
 from yara_log_lab import __version__
 from yara_log_lab.cli import main

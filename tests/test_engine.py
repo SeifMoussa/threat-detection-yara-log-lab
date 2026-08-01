@@ -1,4 +1,4 @@
-"""Tests for Phase 3 fallback detection engine."""
+"""Tests for the fallback detection engine."""
 
 from __future__ import annotations
 

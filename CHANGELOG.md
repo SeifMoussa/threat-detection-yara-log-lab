@@ -6,32 +6,20 @@ All notable changes to this project will be documented here.
 
 ### Added
 
-- Phase 9 release preparation materials in `RELEASE.md`.
-- Coverage gate raised to 90% after meaningful behavior tests improved coverage to 96.07%.
-- Phase 8 final QA checks for repository structure and hygiene.
-- Phase 7 GitHub Actions CI workflow.
-- Phase 7 CodeQL workflow.
-- Phase 7 Dependabot configuration.
-- Phase 7 reusable documentation check script.
-- Phase 6 complete documentation pass.
-- Phase 6 documentation consistency tests.
-- Phase 5 Markdown report generation.
-- Phase 5 JSON report generation.
-- Phase 5 CLI `report` command.
-- Phase 5 example reports under `reports/examples/`.
-- Phase 5 report generation tests.
-- Phase 4 suppression loading and application.
-- Phase 4 CLI suppression support with `--suppressions` and `--include-suppressed`.
-- Phase 4 false-positive validation tests.
-- Phase 4 rule quality validation tests.
-- Phase 4 strengthened sample and documentation safety checks.
-- Phase 3 structured alert model.
-- Phase 3 fallback detection engine for `contains`, `regex`, `field_equals`, and simple `threshold` rules.
-- Phase 3 CLI commands: `scan`, `validate-rules`, and `list-rules`.
-- Phase 3 engine and CLI tests.
-- Phase 2 synthetic JSONL, CSV, and text samples.
-- Phase 2 fallback JSON rule examples.
-- Rule schema validation helpers.
-- JSONL and CSV log loaders.
-- Sample safety and rule validation tests.
-- Phase 1 repository scaffold.
+- Real YARA rule execution via `yara-python`, wired into file-content scanning alongside the existing JSON fallback rules.
+- Two YARA rules under `rules/yara/` covering the synthetic file markers already used by the suspicious sample fixtures.
+- `--yara-rules` CLI option on `scan` and `report`, defaulting to `rules/yara`.
+- GitHub Actions CI workflow, CodeQL scanning, and Dependabot configuration.
+- Documentation consistency and repository hygiene test suites.
+- Markdown and JSON report generation, with example reports checked into `reports/examples/`.
+- False-positive suppression workflow (`suppressions/`, `--suppressions`, `--include-suppressed`).
+- Rule quality validation tests and strengthened sample/documentation safety checks.
+- Fallback detection engine supporting `contains`, `regex`, `field_equals`, and `threshold` rule types.
+- CLI commands: `scan`, `validate-rules`, `list-rules`, `report`.
+- Synthetic JSONL, CSV, and text sample data, plus the initial JSON fallback rule set.
+- Rule schema validation helpers and JSONL/CSV log loaders.
+- Initial repository scaffold.
+
+### Changed
+
+- Coverage gate raised to 90% after behavior-focused tests pushed coverage past 96%.

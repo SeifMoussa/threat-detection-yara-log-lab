@@ -4,9 +4,7 @@ The goal is to demonstrate detection-engineering thinking in a safe local lab: d
 
 ## Engine Design
 
-The current engine is a safe Python fallback engine. It reads local synthetic logs and text files, applies JSON rules, and emits structured alerts.
-
-YARA support is optional and later only. The current project does not require YARA.
+There are two engines behind file-content scanning, and they both feed the same alert model. A Python fallback engine reads local synthetic logs and text files, applies JSON rules, and emits structured alerts. Alongside it, a small set of real `.yar` rules under `rules/yara/` are compiled and matched with `yara-python` against the same text samples. Log scanning (JSONL/CSV) only goes through the fallback engine — YARA in this lab is scoped to file content.
 
 ## Rule Types
 
@@ -83,7 +81,6 @@ Detection quality includes precision. This lab includes false-positive samples s
 - production telemetry collection
 - live system monitoring
 - third-party scanning
-- real YARA dependency
 - production SIEM integration
 - strict time-window threshold logic
-- CI and CodeQL, until the later phase
+- recursive directory scanning

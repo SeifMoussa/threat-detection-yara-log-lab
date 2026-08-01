@@ -1,4 +1,4 @@
-"""Tests for Phase 4 suppression handling."""
+"""Tests for suppression handling."""
 
 from pathlib import Path
 

@@ -1,4 +1,4 @@
-"""Tests for Phase 2 synthetic log loading."""
+"""Tests for synthetic log loading."""
 
 from pathlib import Path
 

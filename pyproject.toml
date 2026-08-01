@@ -12,7 +12,9 @@ license = { text = "MIT" }
 authors = [
     { name = "Seif Hegazy" }
 ]
-dependencies = []
+dependencies = [
+    "yara-python>=4.5,<5",
+]
 
 [project.optional-dependencies]
 dev = [

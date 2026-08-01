@@ -11,6 +11,7 @@ from typing import Any
 from yara_log_lab.alerts import Alert, safe_excerpt
 from yara_log_lab.log_loader import LogLoadError, load_log_file
 from yara_log_lab.rule_loader import Rule
+from yara_log_lab.yara_engine import YaraRuleSet, scan_text_with_yara
 
 SUPPORTED_INPUT_EXTENSIONS = {".jsonl", ".csv", ".txt", ".log"}
 LOG_EXTENSIONS = {".jsonl", ".csv"}
@@ -42,7 +43,12 @@ def scan_log_records(records: Iterable[dict[str, Any]], rules: Iterable[Rule]) -
     return alerts
 
 
-def scan_file_text(path: str | Path, text: str, rules: Iterable[Rule]) -> list[Alert]:
+def scan_file_text(
+    path: str | Path,
+    text: str,
+    rules: Iterable[Rule],
+    yara_rule_set: YaraRuleSet | None = None,
+) -> list[Alert]:
     """Scan one local text file with enabled file-content rules."""
     source_path = str(Path(path))
     alerts: list[Alert] = []
@@ -69,10 +75,15 @@ def scan_file_text(path: str | Path, text: str, rules: Iterable[Rule]) -> list[A
                     metadata={},
                 )
             )
+    alerts.extend(scan_text_with_yara(path, text, yara_rule_set))
     return alerts
 
 
-def scan_path(path: str | Path, rules: Iterable[Rule]) -> list[Alert]:
+def scan_path(
+    path: str | Path,
+    rules: Iterable[Rule],
+    yara_rule_set: YaraRuleSet | None = None,
+) -> list[Alert]:
     """Scan one explicit local file or one non-recursive directory."""
     input_path = Path(path)
     if not input_path.exists():
@@ -81,7 +92,7 @@ def scan_path(path: str | Path, rules: Iterable[Rule]) -> list[Alert]:
         alerts: list[Alert] = []
         for child in sorted(input_path.iterdir()):
             if child.is_file() and child.suffix.lower() in SUPPORTED_INPUT_EXTENSIONS:
-                alerts.extend(scan_path(child, rules))
+                alerts.extend(scan_path(child, rules, yara_rule_set))
         return alerts
     if not input_path.is_file():
         raise UnsupportedInputError(f"Input path is not a regular file: {input_path}")
@@ -99,17 +110,21 @@ def scan_path(path: str | Path, rules: Iterable[Rule]) -> list[Alert]:
             text = input_path.read_text(encoding="utf-8")
         except OSError as exc:
             raise DetectionError(f"Could not read text input {input_path}: {exc}") from exc
-        return scan_file_text(input_path, text, rules)
+        return scan_file_text(input_path, text, rules, yara_rule_set)
 
     raise UnsupportedInputError(f"Unsupported input extension for {input_path}")
 
 
-def scan_many(paths: Iterable[str | Path], rules: Iterable[Rule]) -> list[Alert]:
+def scan_many(
+    paths: Iterable[str | Path],
+    rules: Iterable[Rule],
+    yara_rule_set: YaraRuleSet | None = None,
+) -> list[Alert]:
     """Scan multiple explicit local paths."""
     rule_list = list(rules)
     alerts: list[Alert] = []
     for path in paths:
-        alerts.extend(scan_path(path, rule_list))
+        alerts.extend(scan_path(path, rule_list, yara_rule_set))
     return alerts
 
 

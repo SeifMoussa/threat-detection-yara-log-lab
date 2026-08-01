@@ -52,6 +52,10 @@ python -m yara_log_lab scan --rules rules/fallback --input samples/logs/suspicio
 python -m yara_log_lab scan --rules rules/fallback --input samples/logs/false_positive/auth_false_positive.jsonl --suppressions suppressions/example_suppressions.json --format json --include-suppressed
 ```
 
+```bash
+python -m yara_log_lab scan --rules rules/fallback --yara-rules rules/yara --input samples/files/suspicious/fake_indicator_note.txt --format json
+```
+
 ## Report Examples
 
 ```bash
@@ -64,8 +68,6 @@ python -m yara_log_lab report --rules rules/fallback --input samples/logs/suspic
 
 ## Current Test Coverage
 
-At an earlier test milestone, the suite had 53 tests. Documentation consistency tests were added afterward.
-
 Coverage areas:
 
 - scaffold/import checks
@@ -73,6 +75,7 @@ Coverage areas:
 - fallback rule loader
 - sample safety validation
 - detection engine matching
+- real YARA rule compilation and matching
 - CLI commands
 - suppressions
 - rule quality
@@ -83,9 +86,9 @@ Coverage areas:
 
 - GitHub Actions CI has not run on GitHub yet.
 - CodeQL has not run on GitHub yet.
-- optional YARA adapter
 - production telemetry collection
 - strict time-window threshold logic
+- recursive directory scanning
 
 ## CI Workflows
 
@@ -93,6 +96,6 @@ Local workflow files provide:
 
 - `tests`: ruff, format check, pytest with coverage
 - `docs`: `python scripts/check-docs.py`
-- `cli-smoke`: help, rule validation, rule listing, scan, and report generation
+- `cli-smoke`: help, rule validation, rule listing, scan (including the YARA-backed file scan), and report generation
 
 These workflow files are configured but not yet verified on GitHub.

@@ -11,19 +11,17 @@ This checklist tracks local release preparation. Do not create a tag or release 
 - [ ] CI not yet verified on GitHub.
 - [ ] CodeQL not yet verified on GitHub.
 - [x] Final QA completed locally.
-- [x] Release preparation materials completed locally.
 - [ ] Tag/release creation pending.
 
 ## Local Verification
 
-- [x] Tests passing: 88 passed.
-- [x] Coverage passing: 96.07%.
+- [x] Tests passing (see TESTING_REPORT.md for the current count).
+- [x] Coverage passing, above the configured gate.
 - [x] Coverage gate: 90%.
 - [x] Ruff check passing.
 - [x] Ruff format check passing.
 - [x] Docs check passing.
-- [x] CLI smoke passing.
-- [x] No YARA dependency required.
+- [x] CLI smoke passing, including the YARA-backed file scan.
 
 ## Pending First-Push Items
 

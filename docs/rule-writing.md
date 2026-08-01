@@ -135,6 +135,37 @@ Each rule should have:
 - a false-positive note when benign matches are plausible
 - test coverage for schema and matching behavior
 
-## Optional Later YARA Adapter
+## Writing Real YARA Rules
 
-YARA support is not part of the current implementation. A later adapter may translate or run compatible concepts, but normal usage and tests must continue to work without YARA.
+The `rules/fallback/` JSON rules above are one engine. The other lives in `rules/yara/` as plain `.yar` files, compiled and matched with `yara-python`. They only apply to file-content scans (`--yara-rules`, default `rules/yara`), not to JSONL/CSV log input.
+
+Each rule in this lab carries a `meta` block so its alerts line up with the JSON rules' fields:
+
+```text
+rule Synthetic_Suspicious_File_Marker : file synthetic
+{
+    meta:
+        id = "YARA-001"
+        description = "Synthetic lab marker, not a real threat signature. ..."
+        severity = "low"
+        false_positive_notes = "Also appears intentionally in the false_positive fixture."
+        author = "Seif Hegazy"
+
+    strings:
+        $marker = "SYNTHETIC_SUSPICIOUS_FILE_MARKER" ascii
+
+    condition:
+        $marker
+}
+```
+
+Guidelines for adding a new `.yar` rule here:
+
+- Always set `meta.id`, `meta.description`, and `meta.severity` — the engine reads these directly into the alert.
+- Start every `meta.description` with a plain statement that the rule targets a synthetic lab marker, not a real threat pattern, so nobody skimming the repo mistakes it for production threat intel.
+- Point the rule at a string that already exists in one of the synthetic fixtures under `samples/files/` rather than inventing new indicator-looking content.
+- Add or update a test in `tests/test_yara_rules.py` proving the rule fires on the intended suspicious fixture and stays silent on the benign one.
+
+## Rule ID Namespaces
+
+Fallback rule IDs (`AUTH-`, `CMD-`, `FILE-`, `IND-`) and YARA rule IDs (`YARA-`) are kept in separate namespaces on purpose, so an alert's `rule_id` prefix tells you which engine produced it without checking `metadata.engine`.

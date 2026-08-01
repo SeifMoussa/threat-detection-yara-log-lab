@@ -21,6 +21,7 @@ from yara_log_lab.suppressions import (
     apply_suppressions,
     load_suppressions,
 )
+from yara_log_lab.yara_engine import YaraRuleError, load_yara_rules
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -39,6 +40,11 @@ def build_parser() -> argparse.ArgumentParser:
     scan_parser = subparsers.add_parser("scan", help="Scan local synthetic samples")
     scan_parser.add_argument("--rules", default="rules/fallback", help="Fallback rule directory")
     scan_parser.add_argument(
+        "--yara-rules",
+        default="rules/yara",
+        help="Directory of local .yar rule files applied to file-content scans",
+    )
+    scan_parser.add_argument(
         "--input",
         action="append",
         required=True,
@@ -55,6 +61,11 @@ def build_parser() -> argparse.ArgumentParser:
 
     report_parser = subparsers.add_parser("report", help="Generate a scan report")
     report_parser.add_argument("--rules", default="rules/fallback", help="Fallback rule directory")
+    report_parser.add_argument(
+        "--yara-rules",
+        default="rules/yara",
+        help="Directory of local .yar rule files applied to file-content scans",
+    )
     report_parser.add_argument(
         "--input",
         action="append",
@@ -98,6 +109,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         RuleValidationError,
         SuppressionValidationError,
         UnsupportedInputError,
+        YaraRuleError,
     ) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2
@@ -105,7 +117,8 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 def _handle_scan(args: argparse.Namespace) -> int:
     rules = load_rules_from_directory(args.rules)
-    alerts = scan_many(args.input, rules)
+    yara_rule_set = load_yara_rules(args.yara_rules)
+    alerts = scan_many(args.input, rules, yara_rule_set)
     if args.suppressions:
         suppressions = load_suppressions(args.suppressions)
         alerts = apply_suppressions(alerts, suppressions)
@@ -126,7 +139,8 @@ def _handle_validate_rules(args: argparse.Namespace) -> int:
 
 def _handle_report(args: argparse.Namespace) -> int:
     rules = load_rules_from_directory(args.rules)
-    alerts = scan_many(args.input, rules)
+    yara_rule_set = load_yara_rules(args.yara_rules)
+    alerts = scan_many(args.input, rules, yara_rule_set)
     if args.suppressions:
         suppressions = load_suppressions(args.suppressions)
         alerts = apply_suppressions(alerts, suppressions)

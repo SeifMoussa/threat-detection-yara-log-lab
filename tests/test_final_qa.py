@@ -15,7 +15,6 @@ REQUIRED_PATHS = [
     "CHANGELOG.md",
     "CONTRIBUTING.md",
     "TESTING_REPORT.md",
-    "PROJECT_COMPLETION_CHECKLIST.md",
     "src/yara_log_lab",
     "rules/fallback",
     "rules/yara",

@@ -1,4 +1,4 @@
-"""Documentation consistency checks for Phase 6."""
+"""Documentation consistency checks."""
 
 from __future__ import annotations
 
